@@ -23,8 +23,6 @@ function init() {
   const controls = new THREE.OrbitControls(camera, canvasElement);
   controls.enableDamping = true;
   controls.dampingFactor = 0.2;
-  // controls.screenSpacePanning = false;
-  // controls.maxPolarAngle = Math.PI / 2;
   controls.enableZoom = true;
   
   // 環境光源を作成
@@ -54,21 +52,11 @@ function init() {
     tick();
    
 
-    
-    //   function onDocumentMouseWheel(event) {
-      //     // スクロールホイールイベントによるカメラの拡大縮小
-      //     const delta = event.deltaY;
-      //     const zoomSpeed = 0.1;
-      //     camera.position.z += delta * zoomSpeed;
-      //     controls.update();
-      // }
-      
       function onDocumentMouseWheel(event) {
-        // console.log('Hello');
         const delta = event.deltaY;
         console.log(delta);
         let z;
-        z = 100 + delta;
+        z = 100 + delta;  //ここを修正中
         const scrollSpeed = 0.1;
         
         // スクロール量に基づいてカメラの z 座標を変更
