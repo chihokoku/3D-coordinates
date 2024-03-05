@@ -70,5 +70,7 @@ function init() {
       requestAnimationFrame(tick);
     }
 
+    
+
     tick();
 }
