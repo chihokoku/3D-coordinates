@@ -49,36 +49,33 @@ function init() {
     
 
     window.addEventListener('wheel', onDocumentMouseWheel);
+    
+    
+    function onDocumentMouseWheel(event) {
+      let z = 0;
+      const delta = event.deltaY;
+      z = 100 + delta;
+      const scrollSpeed = 0.1;
+      
+      // スクロール量に基づいてカメラの z 座標を変更
+      camera.position.z += delta * scrollSpeed;
+      
+      // カメラの z 座標がある範囲内に収まるように制限
+      // const minZ = 200;
+      // const maxZ = 800;
+      // camera.position.z = Math.max(minZ, Math.min(maxZ, camera.position.z));
+      camera.position.set(0, 0,z);
+      controls.update();
+      return x;
+    }
+    
+    function tick() {
+      controls.update();
+      camera.position.set(0, 0,100);   //ここの100にzの値を代入させたい
+      // camera.lookAt(new THREE.Vector3(0,0,0));
+      renderer.render(scene, camera); // レンダリング
+      requestAnimationFrame(tick);
+    }
+
     tick();
-   
-
-      function onDocumentMouseWheel(event) {
-        const delta = event.deltaY;
-        console.log(delta);
-        let z;
-        z = 100 + delta;  //ここを修正中
-        const scrollSpeed = 0.1;
-        
-        // スクロール量に基づいてカメラの z 座標を変更
-        camera.position.z += delta * scrollSpeed;
-        
-        // カメラの z 座標がある範囲内に収まるように制限
-        const minZ = 200;
-        const maxZ = 800;
-        camera.position.z = Math.max(minZ, Math.min(maxZ, camera.position.z));
-        
-        controls.update();
-        return z;
-      }
-
-      console.log(z);
-
-      function tick() {
-        let z;
-        controls.update();
-        camera.position.set(0, 0,100);
-        // camera.lookAt(new THREE.Vector3(0,0,0));
-        renderer.render(scene, camera); // レンダリング
-        requestAnimationFrame(tick);
-      }
 }
