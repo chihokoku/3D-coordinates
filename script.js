@@ -54,25 +54,18 @@ function init() {
     function onDocumentMouseWheel(event) {
       let z = 0;
       const delta = event.deltaY;
-      z = 100 + delta;
       const scrollSpeed = 0.1;
       
       // スクロール量に基づいてカメラの z 座標を変更
-      camera.position.z += delta * scrollSpeed;
-      
-      // カメラの z 座標がある範囲内に収まるように制限
-      // const minZ = 200;
-      // const maxZ = 800;
-      // camera.position.z = Math.max(minZ, Math.min(maxZ, camera.position.z));
-      camera.position.set(0, 0,z);
+      z += delta * scrollSpeed;
       controls.update();
-      return x;
+      return z;
     }
     
-    function tick() {
+    function tick(z) {
+      console.log(z); //ここの値がバグる
       controls.update();
       camera.position.set(0, 0,100);   //ここの100にzの値を代入させたい
-      // camera.lookAt(new THREE.Vector3(0,0,0));
       renderer.render(scene, camera); // レンダリング
       requestAnimationFrame(tick);
     }
